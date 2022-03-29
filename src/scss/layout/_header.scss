@@ -1,0 +1,54 @@
+.no-webp .inicio {
+    background-image: url(/build/img/header.jpg);
+    
+}
+ 
+.webp .inicio {
+    background-image: url(/build/img/header.webp);
+    
+}
+
+
+.header {
+    background-color: $grisOscuro;
+    padding: 1rem 0 3rem 0;
+
+    /* en la seccion de header tenemos la clase header y tambien la clase inicio
+    en el mismo elemento. Para hacer referencia al mismo elemento, le colocamos un
+    amperson... */
+
+     &.inicio {
+         /* para alinear la imagen y que esté centrada */
+      background-position: center center;
+      background-size: cover;
+
+         @include tablet {
+             min-height: 70rem;
+         }
+
+         .contenido-header{
+            @include tablet {
+                min-height: 70rem;
+            }
+         }
+
+     }
+
+}
+
+.contenido-header{
+    display: flex; /* coloca el parrafo a la derecha de la navegacion automaticamente. Para 
+    solucionarlo le colocamos un... */
+    flex-direction: column;
+    justify-content: space-between; /*  este space coloca el texto en la parte inferior del header */
+
+   
+
+    h1 {
+        text-align: left;
+        color: $blanco;
+        font-weight: bold;
+        line-height: 2;
+        max-width: 60rem;
+    }
+}

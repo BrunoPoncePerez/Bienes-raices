@@ -1,0 +1,128 @@
+
+.derecha{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include tablet {
+        align-items: flex-end;
+        
+    }
+
+    .dark-mode{
+        width: 3rem;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+        /*===EFECTO EN LA IMAGEN DE DARK MODE===*/
+        filter: invert(100%); /* con esto cambiamos el color del svg DARKMODE */
+
+        &:hover {
+            cursor: pointer; 
+            /* finalmente colocamos este hover para que sea un boton */
+        }
+
+        @include tablet {
+            margin-top: 0;
+            }
+    }
+}
+
+.barra {
+    display: flex; /* desde el momento que agregamos el display flex, coloca los elementos uno 
+    junto al otro */
+    flex-direction: column; /* de abajo hacias arriba */
+    align-items: center;
+    /* hasta acá el logo esta grande y arriba de la navegacion, lo solucionamos con un mixin... */
+     
+    padding-top: 3rem; /* hace que se muetren iguales */
+    
+    @include tablet {
+        flex-direction: row; /* horizontal en un dispositivo mas grande y vertical en 
+        dispositivos pequeños, sin embargo la navegacion está junto al logo...*/
+        justify-content: space-between; /* esto hará que la navegacion se vaya al lado derecho
+        y el logo al lado izquierdo */
+        align-items: flex-end;
+    }
+}
+
+.logo {
+    height: 5rem;
+    width: 40rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+.navegacion {
+    height: 0;
+    /* ==ANIMAR EL MENU DE HAMBURGUESA== */
+    visibility: hidden; /* hará que se no vea la navegacion */
+    opacity: 0;
+    transition: visibility .3s ease-in-out, opacity 0.5s linear, height .5s linear;
+    
+    /* display: none;  */
+
+    @include tablet { /* se insertan en columnas a la derecha, lo solucionamos con... */
+        display: flex;
+        /* para alinear el logo con la navegacion colocamos un align-items... */
+        align-items: center; /* centra los elementos verticalmente */
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* ==FIN DE ANIMACION...CONTINUA EN (.mostrar)== */
+
+    /* enlace */
+    a {
+        color: $blanco;
+        text-decoration: none;
+        font-size: 2.2rem;
+        display: block;/* toman todo el ancho disponible */
+        text-align: center;/* centra los elementos... 
+        
+        hasta aca la navegacion se mantiene de de arriba hacia abajo...*/
+       
+
+        /* este include separa los enlaces de la navegacion */
+        @include tablet {
+            margin-right: 2rem; /* para separar las palabras de la navegacion */
+            font-size: 1.8rem;
+
+            &:last-of-type {/* elimina el margin del ultimo elemento de la navegacion */
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+/** Menu de hamburguesa **/
+
+.mobile-menu{
+
+    @include tablet {
+        display: none;
+    }
+
+    img {
+        width: 5rem;
+    }
+}
+
+/*=======AL DAR CLICK AL MENU DE HAMBURGUESA SE MODIFICARÁ EL BLOCK=======*/
+
+.mostrar {
+    /* NO SE PUEDE DAR ANIMACIONES A LOS DISPLAY (nos vamos a .navegacion)
+
+     ===CON ESTO SOLUCIONAMOS EL DETALLE DE LA NAVEGACION, QUE SE MUESTRA DE ARRIBA A ABAJO DEN UNA TABLET===
+ display: flex;
+    flex-direction: column;
+
+    @include tablet {
+        flex-direction: row;
+ ===HASTA QUE SE SOLUCIONA EL PROBLEMA DE LA NAVEGACION=== 
+    } */
+    visibility: visible; /* hara que se vea la navegacion */
+    opacity: 1;
+    height: auto;
+}
+
